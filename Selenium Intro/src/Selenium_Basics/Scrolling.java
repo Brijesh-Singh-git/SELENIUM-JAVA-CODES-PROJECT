@@ -1,0 +1,45 @@
+package Selenium_Basics;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Scrolling {
+	
+public static void main(String[] args) throws InterruptedException, IOException {
+		
+		System.setProperty("webdriver.chrome.driver", 
+				"G:\\INFOSYS Lectures & Codes\\Stream Training\\JAR Files\\CD.exe"); 
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("https://www.worldometers.info/geography/flags-of-the-world/");
+		driver.manage().window().maximize(); 
+		
+		
+		
+		//1. Scrolling using Pixel 
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+//		
+//		js.executeScript("window.scrollBy(0,1000)", "")	;
+		
+		
+		
+		//2. Scrolling page till we find the element
+		
+//		WebElement flag = driver.findElement(By.xpath("//div[contains(text(),'India')]"));
+//		js.executeScript("arguments[0].scrollIntoView();", flag);
+		
+		
+		// 3 Scroll till Bottom 
+		js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+}
+}

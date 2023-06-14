@@ -1,0 +1,49 @@
+package Selenium_Basics;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebTables {
+	
+public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", 
+				"G:\\INFOSYS Lectures & Codes\\Stream Training\\JAR Files\\CD.exe"); 
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		
+		driver.findElement(By.name("BookTable"));
+	
+		
+		int rowSize = driver.findElements(By.xpath("//table[@name='BookTable']/tbody/tr")).size();
+		System.out.println(rowSize);
+		
+		int colSize = driver.findElements(By.xpath("//table[@name='BookTable']/tbody/tr/th")).size();
+		System.out.println(colSize);
+		
+		
+		String value = driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr[2]")).getText();
+		System.out.println(value); 
+		
+		for(int i=2;i<=rowSize;i++) {
+			
+			
+			for(int j=1;j<=colSize;j++) {
+				
+				System.out.print( driver.findElement(By.xpath("//table[@name='BookTable']/tbody/tr["+i+"]/td["+j+"]")).getText());
+				
+			}
+			System.out.println();
+		}
+		driver.close();
+}
+}

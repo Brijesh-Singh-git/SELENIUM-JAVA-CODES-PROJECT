@@ -1,0 +1,39 @@
+package Selenium_Basics;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class ActionClass_SLIDER {
+	
+public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", 
+				"G:\\INFOSYS Lectures & Codes\\Stream Training\\JAR Files\\CD.exe"); 
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("https://jqueryui.com/slider/");
+		driver.manage().window().maximize(); 
+		
+		driver.switchTo().frame(0);
+		WebElement slider = driver.findElement(By.xpath("/html/body/div/span"));
+		
+		Actions act = new Actions(driver);
+		
+		act.moveToElement(slider).dragAndDropBy(slider, 55, 0).build().perform();
+		
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[normalize-space()='Resizable']")).click();
+		
+		WebElement resize = driver.findElement(By.xpath("/html/body/div/div[3]"));
+		
+		act.moveToElement(resize).dragAndDropBy(resize, 50, 85).build().perform();;
+}}
+
